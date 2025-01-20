@@ -112,10 +112,7 @@ function addActionsForHtmlUI(){
   document.getElementById('circleButton').onclick = function() {g_selectedType = CIRCLE;
     resetPreviewShape();
   }
-  document.getElementById('drawImageButton').onclick = function() {
-    drawPresetImage();
 
-  }
 
   //slider events
   document.getElementById('redSlide').addEventListener('mouseup', function() { g_selectedColor[0] = this.value/100;
@@ -156,69 +153,7 @@ function main() {
 }
 
 
-var g_shapesList = [];
-// var g_points = [];  // The array for the position of a mouse press
-// var g_colors = [];  // The array to store the color of a point
-// var g_sizes = [];
-let poses = [[0.4,0.2]
-,[0.5,0.1]
-,[0.3,-0.1]
-,[0.5,0.1]
-,[0.3,0.1]
-,[-0.6,-0.9]
-,[-0.5,-0.9]
-,[-0.3,-0.9]
-,[-0.5,-0.7]
-,[-0.5,-0.7]
-,[-0.7,-0.9]
-,[-0.3,-0.5]
-,[-0.5,-0.5]
-,[-0.7,-0.5]
-,[-0.7,-0.4]
-,[-0.3,-0.4]
-,[-0.5,-0.5]
-,[-0.5,-0.7]
-,[-0.5,-0.9]
-,[-0.5,-0.9]
-,[-0.7,-0.7]
-,[-0.6,-0.7]
-,[-0.3,-0.7]];
-let color = [[0,1,0,1],[1,1,0,1],[1,1,0,1],[1,1,0,1],[1,1,0,1],[1,0,0,1],
-[1,0,0,1],[1,0,0,1],[1,0,0,1],[1,0,0,1]
-,[1,0,0,1],[1,0,0,1],[1,0,0,1],[1,0,0,1],[1,1,0,1],
-[1,1,0,1],[1,1,0,1],[1,1,0,1],[1,1,0,1],[1,1,0,1],[1,1,0,1],[1,1,0,1],[1,1,0,1],[1,1,0,1]];
-let sizes = [40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40];
-let shapers = [0,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0];
-let vertic = [true,false,true,true,false,false];
-let hori = [true,false,false,true,false,true];
-function drawPresetImage() {
-  let point;
-  let h = 0; //hori tracker;
-  let v = 0; //vertical tracker
-  for (var i = 0; i < poses.length; i++){
-    console.log(i);
-    if (shapers[i] == TRIANGLE){
-      point = new Triangle();
-      point.position = poses[i];
-      point.flippedH = hori[h];
-      h++;
-      point.flippedV = vertic[v];
-      v++;
-      point.color = color[i];
-      point.size = sizes[i];
-      g_shapesList.push(point);
-    }
-    else if (shapers[i] == POINT){
-      point = new Point();
-      point.position = poses[i];
-      point.color = color[i];
-      point.size = sizes[i];
-      g_shapesList.push(point);
-    }
-    
-  }
-  renderALLShapes();
-}
+
 
 function click(ev) {
   [x,y] = convertCoordinatesEventToGL(ev);
@@ -264,4 +199,3 @@ function convertCoordinatesEventToGL(ev){
 
   }
 }
-
